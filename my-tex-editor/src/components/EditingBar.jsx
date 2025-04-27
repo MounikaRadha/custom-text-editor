@@ -1,7 +1,6 @@
-export default function Editingbar({ editorRef }) {
-  const formatText = (command) => {
-    document.execCommand(command, false, null);
-    editorRef.current.focus();
+export default function Editingbar() {
+  const formatText = (command,value=null) => {
+    document.execCommand(command,false, value);
   };
   return (
     <div className="w-screen flex justify-center gap-4 ">
@@ -15,6 +14,9 @@ export default function Editingbar({ editorRef }) {
       </button>
       <button onClick={() => formatText("underline")}>
         Underline
+      </button>
+      <button  onClick={()=>formatText("formatBlock","<h1>")}>
+        heading
       </button>
     </div>
   );
