@@ -19,6 +19,12 @@ export default function Editingbar() {
       <button onClick={() => formatText("formatBlock", "<h1>")}>heading</button>
       <button onClick={() => insertHtml("q")}>quotes</button>
       <button onClick={() => insertHtml("pre")}>code block</button>
+      <button onClick={() => formatText("insertUnorderedList")}>
+        unordered list
+      </button>
+      <button onClick={() => formatText("insertOrderedList")}>
+        ordered list
+      </button>
     </div>
   );
 }
