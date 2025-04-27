@@ -1,7 +1,12 @@
-export default function MyTextBox({ className1 }) {
+export default function MyTextBox({ editorRef, content, setContent }) {
   return (
-    <div className={className1}>
-      <p>text box</p>
-    </div>
+    <div
+      ref={editorRef}
+      className="h-full w-screen"
+      contentEditable
+      suppressContentEditableWarning
+      dangerouslySetInnerHTML={{ __html: content }}
+      onInput={(e) => setContent(e.currentTarget.innerHTML)}
+    />
   );
 }
