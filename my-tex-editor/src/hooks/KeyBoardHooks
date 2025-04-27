@@ -3,9 +3,12 @@ import functionhandlers from "../functions/functionHandlers";
 import { useState } from "react";
 export default function useKeyBoard() {
 
+  //when user presses / we say command palette is open and when user presses b we make the text bold
+  //wehn user press esc or enter we close the command palette
   const [isPalletOpen, setIsPaletteOpen] = useState(false);
   
   const handleRegularKeyPress = (event) => {
+    //function which handles cmd+shift+key press
     if (event.metaKey && event.shiftKey && event.key === "8") {
       event.preventDefault();
       functionhandlers.makeBold();
@@ -16,6 +19,7 @@ export default function useKeyBoard() {
     }
   };
   const handleKeySequence = (event) => {
+    //function which handles / followed by key press such as b to make bold
     if (event.key == "/") {
       event.preventDefault();
       setIsPaletteOpen(true);
@@ -34,7 +38,9 @@ export default function useKeyBoard() {
     handleKeySequence(event);
     handleRegularKeyPress(event);
   };
+  
   useEffect(() => {
+    //when ever some key is pressed we call the handleKeyDown function
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isPalletOpen]);

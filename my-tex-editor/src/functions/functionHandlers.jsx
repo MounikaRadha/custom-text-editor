@@ -1,6 +1,3 @@
-const makeBold = () => {
-  formatText("bold");
-};
 const insertHtml = (tag) => {
   document.execCommand(
     "insertHTML",
@@ -10,6 +7,9 @@ const insertHtml = (tag) => {
 };
 const formatText = (command, value = null) => {
   document.execCommand(command, false, value);
+};
+const makeBold = () => {
+  formatText("bold");
 };
 const makeItalic = () => {
   formatText("italic");
