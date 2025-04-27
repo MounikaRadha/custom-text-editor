@@ -5,7 +5,6 @@ export default function MyTextBox() {
       className="h-full w-full p-4 border rounded-xl"
       contentEditable
       suppressContentEditableWarning
-    >
-    </div>
+    ></div>
   );
 }

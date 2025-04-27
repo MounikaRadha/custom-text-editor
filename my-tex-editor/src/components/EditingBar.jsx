@@ -1,28 +1,24 @@
+import functionhandlers from "../functions/functionHandlers";
+
 export default function Editingbar() {
-  const formatText = (command, value = null) => {
-    document.execCommand(command, false, value);
-  };
-  const insertHtml = (tag) => {
-    document.execCommand(
-      "insertHTML",
-      false,
-      `<${tag}>${document.getSelection().toString()}</${tag}>`
-    );
-  };
   return (
     <div className="w-screen flex justify-center gap-4 ">
       <span>editing bar </span>
       &nbsp;
-      <button onClick={() => formatText("bold")}>Bold</button>
-      <button onClick={() => formatText("italic")}>Italic</button>
-      <button onClick={() => formatText("underline")}>Underline</button>
-      <button onClick={() => formatText("formatBlock", "<h1>")}>heading</button>
-      <button onClick={() => insertHtml("q")}>quotes</button>
-      <button onClick={() => insertHtml("pre")}>code block</button>
-      <button onClick={() => formatText("insertUnorderedList")}>
+      <button onClick={() => functionhandlers.makeBold()}>Bold</button>
+      <button onClick={() => functionhandlers.makeItalic()}>Italic</button>
+      <button onClick={() => functionhandlers.makeUnderline()}>
+        Underline
+      </button>
+      <button onClick={() => functionhandlers.makeHeadingH1()}>heading</button>
+      <button onClick={() => functionhandlers.makeQuotes()}>quotes</button>
+      <button onClick={() => functionhandlers.makeCodeBlock()}>
+        code block
+      </button>
+      <button onClick={() => functionhandlers.makeUnorderedList()}>
         unordered list
       </button>
-      <button onClick={() => formatText("insertOrderedList")}>
+      <button onClick={() => functionhandlers.makeOrderedList()}>
         ordered list
       </button>
     </div>

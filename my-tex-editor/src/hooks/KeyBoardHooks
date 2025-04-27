@@ -1,0 +1,21 @@
+import { use, useEffect } from "react";
+import functionhandlers from "../functions/functionHandlers";
+
+export default function useKeyBoard() {
+  const handleKeyDown = (event) => {
+    if (event.metaKey && event.shiftKey && event.key === "8") {
+      event
+      functionhandlers.makeBold()
+    }
+    if (event.metaKey && event.shiftKey && event.key === "9") {
+      event.preventDefault();
+      functionhandlers.makeItalic()
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  return null;
+}
