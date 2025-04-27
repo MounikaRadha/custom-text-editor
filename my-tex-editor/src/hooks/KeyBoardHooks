@@ -1,21 +1,43 @@
 import { use, useEffect } from "react";
 import functionhandlers from "../functions/functionHandlers";
-
+import { useState } from "react";
 export default function useKeyBoard() {
-  const handleKeyDown = (event) => {
+
+  const [isPalletOpen, setIsPaletteOpen] = useState(false);
+  
+  const handleRegularKeyPress = (event) => {
     if (event.metaKey && event.shiftKey && event.key === "8") {
-      event
-      functionhandlers.makeBold()
+      event.preventDefault();
+      functionhandlers.makeBold();
     }
     if (event.metaKey && event.shiftKey && event.key === "9") {
       event.preventDefault();
-      functionhandlers.makeItalic()
+      functionhandlers.makeItalic();
     }
+  };
+  const handleKeySequence = (event) => {
+    if (event.key == "/") {
+      event.preventDefault();
+      setIsPaletteOpen(true);
+    }
+    if ((isPalletOpen && event.key === "Escape") || event.key === "Enter") {
+      event.preventDefault();
+      setIsPaletteOpen(false);
+    }
+    if (event.key === "b" && isPalletOpen) {
+      event.preventDefault();
+      functionhandlers.makeBold();
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    handleKeySequence(event);
+    handleRegularKeyPress(event);
   };
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [isPalletOpen]);
 
   return null;
 }
